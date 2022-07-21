@@ -26,14 +26,14 @@ function Main() {
   //     .catch((err) => console.log(err));
   // });
 
-  useEffect(() => {
-    // http://localhost:${PORT}
-    // const PORT = process.env.PORT || 2121;
-    axios.get(`/showMaterial`).then((response) => {
-      console.log(response);
-      setEntries(response.data);
-    });
-  }, []);
+  // useEffect(() => {
+  //   // http://localhost:${PORT}
+  //   // const PORT = process.env.PORT || 2121;
+  //   axios.get(`/showMaterial`).then((response) => {
+  //     console.log(response);
+  //     setEntries(response.data);
+  //   });
+  // }, []);
 
   const listElements = entries.map((entry) => (
     <Entry
