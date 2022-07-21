@@ -3,18 +3,12 @@ function Navbar() {
     <div className="Navbar">
       <nav>
         <div>
-          <a href="/">LogIt</a>
-          <button
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navmenu"
-          >
-            {/* <span className="navbar-toggler-icon"></span> */}
-          </button>
+          <a href="/">FinishLine</a>
+
           <div id="navmenu">
             <ul>
               <li>
-                <a href="/materials">Materials</a>
+                <a href="/materials">Projects</a>
               </li>
               <li>
                 <a href="#">Account</a>
