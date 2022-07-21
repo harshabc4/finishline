@@ -21,19 +21,6 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }).then(
 app.set("view engine", "ejs");
 app.use(cors({ origin: true, credentials: true }));
 
-// // TEST START
-// // Accessing the path module
-// const path = require("path");
-
-// // Step 1:
-// app.use(express.static(path.resolve(__dirname, "./client/build")));
-// // Step 2:
-// app.get("*", function (request, response) {
-//   response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
-// });
-
-// // TEST END
-
 // app.use(express.static(__dirname + ""));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -149,6 +136,19 @@ app.delete("/deleteMaterial", (request, response) => {
     })
     .catch((error) => console.error(error));
 });
+
+// // TEST START
+// // Accessing the path module
+// const path = require("path");
+
+// Step 1:
+app.use(express.static(path.resolve(__dirname, "./client/build")));
+// Step 2:
+app.get("*", function (request, response) {
+  response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+});
+
+// // TEST END
 
 // Listen on PORT
 app.listen(PORT, () => {
