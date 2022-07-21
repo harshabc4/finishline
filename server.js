@@ -18,25 +18,25 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }).then(
 );
 
 // View Settings
-app.set("view engine", "ejs");
+// app.set("view engine", "ejs");
 app.use(cors({ origin: true, credentials: true }));
 
 // app.use(express.static(__dirname + ""));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Initial Page Request
-app.get("/", (request, response) => {
-  // Sort array by amount
-  db.collection("materials")
-    .find()
-    .sort({ amount: -1 })
-    .toArray()
-    .then((data) => {
-      response.render("index.ejs", { info: data });
-    })
-    .catch((error) => console.error(error));
-});
+// // Initial Page Request
+// app.get("/", (request, response) => {
+//   // Sort array by amount
+//   db.collection("materials")
+//     .find()
+//     .sort({ amount: -1 })
+//     .toArray()
+//     .then((data) => {
+//       response.render("index.ejs", { info: data });
+//     })
+//     .catch((error) => console.error(error));
+// });
 
 // Materials Page Request
 app.get("/materials", (request, response) => {
