@@ -94,7 +94,8 @@ app.post("/addMaterial", (request, response) => {
     })
     .then((result) => {
       console.log("Material Added");
-      response.redirect("/materials");
+      response.redirect("/");
+      // response.redirect("/materials");
     })
     .catch((error) => console.error(error));
 });

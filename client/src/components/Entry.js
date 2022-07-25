@@ -1,6 +1,27 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
-function Entry(props) {
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
+
+function Entry(props, { setEntries }) {
+  const deleteProject = async (brand, product) => {
+    try {
+      const response = await fetch("/deleteMaterial", {
+        method: "delete",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          brand: brand,
+          product: product,
+        }),
+      });
+      const data = await response.json();
+      console.log(data);
+      // location.reload();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="Entry">
       <ul className="materials px-3">
@@ -9,8 +30,12 @@ function Entry(props) {
           <span>{props.product}</span>
           <span>{props.amount}</span>
         </li>
-        <FontAwesomeIcon className="fa-thumbs-up" icon={faThumbsUp} />
-        <span className="fa fa-trash"></span>
+        <FontAwesomeIcon className="add-one-icon" icon={faThumbsUp} />
+        <FontAwesomeIcon
+          onClick={(e) => deleteProject(props.brand)}
+          className="delete-icon"
+          icon={faTrashCan}
+        />
       </ul>
     </div>
   );

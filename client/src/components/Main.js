@@ -1,43 +1,26 @@
 import React, { useEffect } from "react";
 import Entry from "./Entry.js";
-// import { getMaterials } from "./functions/materials/js";
-// import fetchMaterials from "./api/index.js";
 import axios from "axios";
+import { nanoid } from "nanoid";
 
 function Main() {
-  const [entries, setEntries] = React.useState([
-    { key: 1, brand: "asdf", product: "fdas", amount: 1 },
-  ]);
-  // useEffect(() => {
-  //   getMaterials()
-  //     .then((res) => {
-  //       console.log(res);
-  //       setEntries(res);
-  //     })
-  //     .catch((err) => console.log(err));
-  // });
+  // const [entries, setEntries] = React.useState([
+  //   { key: 1, brand: "asdf", product: "fdas", amount: 1 },
+  // ]);
 
-  // useEffect(() => {
-  //   fetchMaterials()
-  //     .then((res) => {
-  //       console.log(res);
-  //       setEntries(res);
-  //     })
-  //     .catch((err) => console.log(err));
-  // });
+  const [entries, setEntries] = React.useState([]);
 
   useEffect(() => {
-    // http://localhost:${PORT}
-    // const PORT = process.env.PORT || 2121;
     axios.get(`/showMaterial`).then((response) => {
-      console.log(response);
+      // console.log(response);
       setEntries(response.data);
     });
-  }, []);
+  }, [entries]);
 
   const listElements = entries.map((entry) => (
     <Entry
-      // key={entry.id}
+      // key={nanoid()}
+      // id={nanoid()}
       brand={entry.brand}
       product={entry.product}
       amount={entry.amount}
@@ -45,28 +28,20 @@ function Main() {
   ));
   return (
     <div className="Main">
-      <section>
-        <div>
+      <div className="projects-container">
+        <h1>Inventory:</h1>
+        {listElements}
+      </div>
+      <div className="project-controls-container">
+        <h2>Add A Material:</h2>
+        <form action="/addMaterial" method="POST">
+          <input type="text" placeholder="Brand" name="brand" />
+          <input type="text" placeholder="Product" name="product" />
           <div>
-            <div>
-              <h1>Inventory:</h1>
-
-              {listElements}
-            </div>
-
-            <div>
-              <h2>Add A Material:</h2>
-              <form action="/addMaterial" method="POST">
-                <input type="text" placeholder="Brand" name="brand" />
-                <input type="text" placeholder="Product" name="product" />
-                <div>
-                  <input type="submit" value="Add" />
-                </div>
-              </form>
-            </div>
+            <input type="submit" value="Add" />
           </div>
-        </div>
-      </section>
+        </form>
+      </div>
     </div>
   );
 }
